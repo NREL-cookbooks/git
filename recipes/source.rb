@@ -44,5 +44,5 @@ execute "Extracting and Building Git #{node['git']['version']} from Source" do
     (cd git-#{node['git']['version']} && make prefix=#{node['git']['prefix']} install)
   COMMAND
   creates "node['git']['prefix']}/bin/git"
-  not_if "git --version | grep #{node['git']['version']}"
+  not_if "git --version | grep 'version #{node['git']['version']}$'"
 end
