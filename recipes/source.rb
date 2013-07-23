@@ -26,8 +26,10 @@ pkgs = value_for_platform_family(
   ["rhel"] => %w{ expat-devel gettext-devel libcurl-devel openssl-devel perl-ExtUtils-MakeMaker zlib-devel }
 )
 
-pkgs.each do |pkg|
-  package pkg
+unless pkgs.nil?
+  pkgs.each do |pkg|
+    package pkg
+  end
 end
 
 remote_file "#{Chef::Config['file_cache_path']}/git-#{node['git']['version']}.tar.gz" do
